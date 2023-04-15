@@ -14,7 +14,7 @@ module.exports = {
         "jetbrains-mono": ["var(--font-jetbrains-mono)", ...fontFamily.sans],
       },
       colors: {
-        gray: { dark: "#24232C", base: "#817D92" },
+        gray: { darkest: "#08070B", dark: "#24232C", base: "#817D92" },
         cream: "#E6E5EA",
         black: "#18171F",
         yellow: "#F8CD65",
