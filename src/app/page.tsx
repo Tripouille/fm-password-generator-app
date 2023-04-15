@@ -3,7 +3,7 @@ import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
 export default function Home() {
   return (
     <article className="flex max-w-[21.45rem] flex-col items-center border-2 border-pink-400 px-4 py-16">
-      <h1 className="pb-5 pt-4 font-bold leading-tight text-gray-base">
+      <h1 className="mb-4 font-bold leading-tight text-gray-base">
         Password Generator
       </h1>
 
