@@ -1,14 +1,20 @@
+import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
+
 export default function Home() {
   return (
-    <article className="flex max-w-[21.45rem] flex-col items-center gap-2">
-      <h1 className="font-bold leading-tight text-gray-base">
+    <article className="flex max-w-[21.45rem] flex-col items-center border-2 border-pink-400 px-4 py-16">
+      <h1 className="pb-5 pt-4 font-bold leading-tight text-gray-base">
         Password Generator
       </h1>
-      
+
       <form id="generate-password">
-        <output htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols">
-          <p>Generated Password</p>
-          copy
+        <output
+          id="password-output"
+          className="flex items-center justify-between bg-gray-dark p-4 font-bold leading-loose"
+          htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
+        >
+          <p>PTx1f5DaFX</p>
+          <CopyToClipboardSVG />
         </output>
         <div>
           <label>
@@ -36,6 +42,7 @@ export default function Home() {
       </form>
 
       <output
+       id="strength-output"
         form="generate-password"
         htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
       >
