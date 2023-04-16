@@ -7,6 +7,8 @@ export interface CopyToClipboardButtonProps {
   text: string;
 }
 
+const DISPLAY_COPIED_TIME_MS = 1500;
+
 export const CopyToClipboardButton = ({
   className,
   text,
@@ -20,7 +22,10 @@ export const CopyToClipboardButton = ({
       .then(() => {
         clearTimeout(timeoutRef.current);
         setCopied(true);
-        timeoutRef.current = setTimeout(() => setCopied(false), 2000);
+        timeoutRef.current = setTimeout(
+          () => setCopied(false),
+          DISPLAY_COPIED_TIME_MS
+        );
       })
       .catch(() => {
         clearTimeout(timeoutRef.current);
