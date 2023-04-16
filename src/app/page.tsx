@@ -13,6 +13,9 @@ import {
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
   PasswordGenerationBooleanOptions,
+  PASSWORD_GENERATION_BOOLEAN_OPION_IDS,
+  PASSWORD_GENERATION_FORM_ID,
+  PASSWORD_GENERATION_LENGTH_OPTION_ID,
   PASSWORD_PLACEHOLDER,
 } from "@/utils/password";
 import { RecordEntries } from "@/utils/types";
@@ -47,9 +50,9 @@ export default function HomePage() {
       </h1>
 
       <output
-        id="password-output"
         className="mb-4 flex w-full items-center justify-between bg-gray-dark p-4 font-bold leading-loose sm:mb-6 sm:px-8 sm:py-5"
-        htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
+        form={PASSWORD_GENERATION_FORM_ID}
+        htmlFor={`${PASSWORD_GENERATION_LENGTH_OPTION_ID} ${PASSWORD_GENERATION_BOOLEAN_OPION_IDS}`}
       >
         <p
           className={`sm:text-[2rem] sm:leading-[2.625rem] ${
@@ -63,10 +66,11 @@ export default function HomePage() {
 
       <form
         className="sm: w-full bg-gray-dark px-4 py-4 sm:px-8 sm:pb-8 sm:pt-6"
-        id="generate-password"
+        id={PASSWORD_GENERATION_FORM_ID}
         onSubmit={handleSubmit}
       >
         <PasswordLengthSlider
+          id="password-length"
           className="mb-8"
           min={MIN_PASSWORD_LENGTH}
           max={MAX_PASSWORD_LENGTH}
@@ -100,9 +104,8 @@ export default function HomePage() {
         </div>
 
         <output
-          id="strength-output"
-          form="generate-password"
-          htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
+          form={PASSWORD_GENERATION_FORM_ID}
+          htmlFor={`${PASSWORD_GENERATION_LENGTH_OPTION_ID} ${PASSWORD_GENERATION_BOOLEAN_OPION_IDS}`}
         >
           <StrengthIndicator strength={strength} />
         </output>
@@ -110,7 +113,7 @@ export default function HomePage() {
         <button
           className="mt-4 flex w-full items-center justify-center gap-4 border-2 border-transparent bg-green py-4 font-bold text-gray-darkest hover:border-green hover:bg-transparent hover:text-green sm:mt-8 sm:py-[1.15rem] sm:text-lg sm:leading-snug"
           type="submit"
-          form="generate-password"
+          form={PASSWORD_GENERATION_FORM_ID}
         >
           GENERATE
           <RigthArrowSVG />

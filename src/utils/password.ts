@@ -47,6 +47,14 @@ export const MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA: Record<
   },
 };
 
+export const PASSWORD_GENERATION_FORM_ID = "password-generation-form";
+export const PASSWORD_GENERATION_LENGTH_OPTION_ID = "password-length";
+export const PASSWORD_GENERATION_BOOLEAN_OPION_IDS = Object.values(
+  MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA
+)
+  .map(({ id }) => id)
+  .join(" ");
+
 /**
  * Returns a function that checks if a boolean option is disabled.
  * Always one boolean option must be active.

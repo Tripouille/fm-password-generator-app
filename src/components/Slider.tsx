@@ -5,6 +5,7 @@ import { ComponentProps } from "react";
 
 export const Slider = ({
   className,
+  id,
   ...props
 }: PropsWithClassName<ComponentProps<typeof RadixSlider.Root>>) => {
   return (
@@ -15,7 +16,10 @@ export const Slider = ({
       <RadixSlider.Track className="relative h-2 w-full flex-grow bg-gray-darkest">
         <RadixSlider.Range className="absolute h-full bg-green" />
       </RadixSlider.Track>
-      <RadixSlider.Thumb className="block h-7 w-7 rounded-full bg-cream" />
+      <RadixSlider.Thumb
+        className="block h-7 w-7 rounded-full bg-cream"
+        id={id}
+      />
     </RadixSlider.Root>
   );
 };
