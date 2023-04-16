@@ -75,6 +75,7 @@ export function PasswordGenerationForm({
               disabled={isBooleanOptionDisabled(booleanOption)}
               onCheckedChange={handleCheckedChange(booleanOption)}
               checked={options[booleanOption]}
+              aria-label={label}
             />
             {label}
           </label>

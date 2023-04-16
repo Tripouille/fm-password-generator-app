@@ -21,7 +21,7 @@ export const PasswordLengthSlider = ({
           {length}
         </span>
       </p>
-      <Slider {...props} />
+      <Slider aria-label="password length" {...props} />
     </label>
   );
 };

@@ -19,6 +19,7 @@ export const Slider = ({
       <RadixSlider.Thumb
         className="block h-7 w-7 rounded-full bg-cream"
         id={id}
+        aria-label={props["aria-label"]}
       />
     </RadixSlider.Root>
   );
