@@ -11,8 +11,10 @@ import {
   isPasswordGenerationBooleanOptionDisabled,
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
+  PasswordGenerationOptions,
   PASSWORD_PLACEHOLDER,
 } from "@/utils/password";
+import { CheckboxProps } from "@radix-ui/react-checkbox";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
 
@@ -27,6 +29,14 @@ export default function HomePage() {
     e.preventDefault();
     setPassword(generator.generate(options));
   };
+
+  const handleCheckedChange =
+    (
+      booleanOption: keyof Omit<PasswordGenerationOptions, "length">
+    ): CheckboxProps["onCheckedChange"] =>
+    (checked) => {
+      setOptions((prev) => ({ ...prev, [booleanOption]: Boolean(checked) }));
+    };
 
   return (
     <article className="flex min-w-[21.45rem] flex-col items-center sm:min-w-[33.75rem]">
@@ -69,10 +79,8 @@ export default function HomePage() {
             <Checkbox
               id="include-uppercase-letters"
               disabled={isBooleanOptionDisabled("uppercase")}
+              onCheckedChange={handleCheckedChange("uppercase")}
               checked={options.uppercase}
-              onCheckedChange={(checked) =>
-                setOptions((prev) => ({ ...prev, uppercase: Boolean(checked) }))
-              }
             />
             Include Uppercase Letters
           </label>
@@ -80,10 +88,8 @@ export default function HomePage() {
             <Checkbox
               id="include-lowercase-letters"
               disabled={isBooleanOptionDisabled("lowercase")}
+              onCheckedChange={handleCheckedChange("lowercase")}
               checked={options.lowercase}
-              onCheckedChange={(checked) =>
-                setOptions((prev) => ({ ...prev, lowercase: Boolean(checked) }))
-              }
             />
             Include Lowercase Letters
           </label>
@@ -91,10 +97,8 @@ export default function HomePage() {
             <Checkbox
               id="include-numbers"
               disabled={isBooleanOptionDisabled("numbers")}
+              onCheckedChange={handleCheckedChange("numbers")}
               checked={options.numbers}
-              onCheckedChange={(checked) =>
-                setOptions((prev) => ({ ...prev, numbers: Boolean(checked) }))
-              }
             />
             Include Numbers
           </label>
@@ -102,10 +106,8 @@ export default function HomePage() {
             <Checkbox
               id="include-symbols"
               disabled={isBooleanOptionDisabled("symbols")}
+              onCheckedChange={handleCheckedChange("symbols")}
               checked={options.symbols}
-              onCheckedChange={(checked) =>
-                setOptions((prev) => ({ ...prev, symbols: Boolean(checked) }))
-              }
             />
             Include Symbols
           </label>
