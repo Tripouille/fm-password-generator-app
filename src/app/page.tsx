@@ -1,13 +1,13 @@
 "use client";
 
-import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
+import { PasswordLengthSlider } from "@/components/PasswordLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardButton } from "@/components/CopyToClipboardButton";
-import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
 import {
   StrengthIndicator,
   StrengthIndicatorProps,
 } from "@/components/StrengthIndicator";
+import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
 
@@ -99,7 +99,7 @@ export default function HomePage() {
         id="generate-password"
         onSubmit={handleSubmit}
       >
-        <CharacterLengthSlider
+        <PasswordLengthSlider
           className="mb-8"
           min={MIN_CHARACTERS_LENGTH}
           max={MAX_CHARACTERS_LENGTH}

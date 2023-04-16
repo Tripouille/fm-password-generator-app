@@ -5,7 +5,7 @@ import * as RadixSlider from "@radix-ui/react-slider";
 import { ComponentProps } from "react";
 import { Slider } from "./Slider";
 
-export const CharacterLengthSlider = ({
+export const PasswordLengthSlider = ({
   className,
   ...props
 }: PropsWithClassName<ComponentProps<typeof RadixSlider.Root>>) => {
