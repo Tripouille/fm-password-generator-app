@@ -1,10 +1,11 @@
 import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
+import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
 
 export default function Home() {
   return (
-    <article className="flex max-w-[21.45rem] flex-col items-center gap-4 px-4 py-16">
-      <h1 className=" font-bold leading-tight text-gray-base">
+    <article className="flex min-w-[21.45rem] flex-col items-center gap-4 px-4 py-16">
+      <h1 className="w-full text-center font-bold leading-tight text-gray-base">
         Password Generator
       </h1>
 
@@ -17,25 +18,27 @@ export default function Home() {
         <CopyToClipboardSVG />
       </output>
 
-      <form className="bg-gray-dark p-4" id="generate-password">
+      <form className="w-full bg-gray-dark p-4" id="generate-password">
         <CharacterLengthSlider />
 
-        <label>
-          <input id="include-uppercase-letters" type="checkbox" />
-          Include Uppercase Letters
-        </label>
-        <label>
-          <input id="include-lowercase-letters" type="checkbox" />
-          Include Lowercase Letters
-        </label>
-        <label>
-          <input id="include-numbers" type="checkbox" />
-          Include Numbers
-        </label>
-        <label>
-          <input id="include-symbols" type="checkbox" />
-          Include Symbols
-        </label>
+        <div className="mb-8 flex flex-col gap-4 font-bold leading-tight">
+          <label className="flex items-center gap-5">
+            <Checkbox id="include-uppercase-letters" />
+            Include Uppercase Letters
+          </label>
+          <label className="flex items-center gap-5">
+            <Checkbox id="include-lowercase-letters" />
+            Include Lowercase Letters
+          </label>
+          <label className="flex items-center gap-5">
+            <Checkbox id="include-numbers" />
+            Include Numbers
+          </label>
+          <label className="flex items-center gap-5">
+            <Checkbox id="include-symbols" />
+            Include Symbols
+          </label>
+        </div>
 
         <output
           id="strength-output"

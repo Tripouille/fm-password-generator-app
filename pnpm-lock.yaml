@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@radix-ui/react-checkbox': 1.0.3
   '@radix-ui/react-slider': 1.1.1
   '@total-typescript/ts-reset': 0.4.2
   '@types/node': 18.15.11
@@ -21,6 +22,7 @@ specifiers:
   typescript: 5.0.4
 
 dependencies:
+  '@radix-ui/react-checkbox': 1.0.3_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-slider': 1.1.1_biqbaboplfbrettd7655fr4n2y
   '@total-typescript/ts-reset': 0.4.2
   '@types/node': 18.15.11
@@ -312,6 +314,25 @@ packages:
       '@babel/runtime': 7.21.0
     dev: false
 
+  /@radix-ui/react-checkbox/1.0.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-55B8/vKzTuzxllH5sGJO4zaBf9gYpJuJRRzaOKm+0oAefRnMvbf+Kgww7IOANVN0w3z7agFJgtnXaZl8Uj95AA==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@radix-ui/primitive': 1.0.0
+      '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
+      '@radix-ui/react-context': 1.0.0_react@18.2.0
+      '@radix-ui/react-presence': 1.0.0_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-primitive': 1.0.2_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-use-controllable-state': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-previous': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-size': 1.0.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /@radix-ui/react-collection/1.0.2_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-s8WdQQ6wNXpaxdZ308KSr8fEWGrg4un8i4r/w7fhiS4ElRNjk5rRcl0/C6TANG2LvLOGIxtzo/jAg6Qf73TEBw==}
     peerDependencies:
@@ -352,6 +373,19 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-presence/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-A+6XEvN01NfVWiKu38ybawfHsBjWum42MRPnEuqPsBZ4eV7e/7K321B5VgYMPv3Xx5An6o1/l9ZuDBgmcmWK3w==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
+      '@radix-ui/react-use-layout-effect': 1.0.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@radix-ui/react-primitive/1.0.2_biqbaboplfbrettd7655fr4n2y:

@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "1.0.3",
     "@radix-ui/react-slider": "1.1.1",
     "@total-typescript/ts-reset": "0.4.2",
     "@types/node": "18.15.11",
