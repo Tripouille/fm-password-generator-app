@@ -28,7 +28,7 @@ export const CopyToClipboardButton = ({
   return (
     <button
       disabled={!text}
-      className={`flex items-end gap-4 ${className ?? ""}`}
+      className={`flex items-center gap-4 ${className ?? ""}`}
       onClick={handleClick}
     >
       <span
@@ -38,7 +38,7 @@ export const CopyToClipboardButton = ({
       >
         COPIED
       </span>
-      <CopyToClipboardSVG />
+      <CopyToClipboardSVG className="h-5 w-5 sm:h-6 sm:w-6" />
     </button>
   );
 };

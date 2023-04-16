@@ -13,11 +13,15 @@ export const CharacterLengthSlider = ({
 
   return (
     <label className={`flex flex-col ${className ?? ""}`}>
-      <p className="mb-2 flex items-center justify-between font-bold">
-        <span className="leading-snug">Character Length</span>{" "}
-        <span className="text-2xl text-green">{length}</span>
+      <p className="mb-2 flex items-center justify-between font-bold sm:mb-4">
+        <span className="leading-snug sm:text-lg sm:leading-6">
+          Character Length
+        </span>{" "}
+        <span className="text-2xl text-green sm:text-[2rem] sm:leading-[2.625rem]">
+          {length}
+        </span>
       </p>
-      <Slider {...props} className="mb-8" />
+      <Slider {...props} />
     </label>
   );
 };

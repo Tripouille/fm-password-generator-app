@@ -74,28 +74,33 @@ export default function HomePage() {
   };
 
   return (
-    <article className="flex min-w-[21.45rem] flex-col items-center gap-4">
-      <h1 className="w-full text-center font-bold leading-tight text-gray-base">
+    <article className="flex min-w-[21.45rem] flex-col items-center sm:min-w-[33.75rem]">
+      <h1 className="mb-4 w-full text-center font-bold leading-tight text-gray-base sm:mb-8 sm:text-2xl">
         Password Generator
       </h1>
 
       <output
         id="password-output"
-        className="flex w-full items-center justify-between bg-gray-dark p-4 font-bold leading-loose"
+        className="mb-4 flex w-full items-center justify-between bg-gray-dark p-4 font-bold leading-loose sm:mb-6 sm:px-8 sm:py-5"
         htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
       >
-        <p className={`${password ? "" : "text-[#54535B]"}`}>
+        <p
+          className={`sm:text-[2rem] sm:leading-[2.625rem] ${
+            password ? "" : "text-[#54535B]"
+          }`}
+        >
           {password || "P4$5W0rD!"}
         </p>
         <CopyToClipboardButton text={password} />
       </output>
 
       <form
-        className="w-full bg-gray-dark p-4"
+        className="sm: w-full bg-gray-dark px-4 py-4 sm:px-8 sm:pb-8 sm:pt-6"
         id="generate-password"
         onSubmit={handleSubmit}
       >
         <CharacterLengthSlider
+          className="mb-8"
           min={MIN_CHARACTERS_LENGTH}
           max={MAX_CHARACTERS_LENGTH}
           value={[options.length]}
@@ -104,8 +109,8 @@ export default function HomePage() {
           }
         />
 
-        <div className="mb-8 flex flex-col gap-4 font-bold leading-tight">
-          <label className="flex items-center gap-5">
+        <div className="mb-8 flex flex-col gap-4 font-bold leading-tight sm:gap-5">
+          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-uppercase-letters"
               disabled={isOptionDisabled("uppercase")}
@@ -116,7 +121,7 @@ export default function HomePage() {
             />
             Include Uppercase Letters
           </label>
-          <label className="flex items-center gap-5">
+          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-lowercase-letters"
               disabled={isOptionDisabled("lowercase")}
@@ -127,7 +132,7 @@ export default function HomePage() {
             />
             Include Lowercase Letters
           </label>
-          <label className="flex items-center gap-5">
+          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-numbers"
               disabled={isOptionDisabled("numbers")}
@@ -138,7 +143,7 @@ export default function HomePage() {
             />
             Include Numbers
           </label>
-          <label className="flex items-center gap-5">
+          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-symbols"
               disabled={isOptionDisabled("symbols")}
@@ -160,7 +165,7 @@ export default function HomePage() {
         </output>
 
         <button
-          className="mt-4 flex w-full items-center justify-center gap-4 border-2 border-transparent bg-green py-4 font-bold text-gray-darkest hover:border-green hover:bg-transparent hover:text-green"
+          className="mt-4 flex w-full items-center justify-center gap-4 border-2 border-transparent bg-green py-4 font-bold text-gray-darkest hover:border-green hover:bg-transparent hover:text-green sm:mt-8 sm:py-[1.15rem] sm:text-lg sm:leading-snug"
           type="submit"
           form="generate-password"
         >

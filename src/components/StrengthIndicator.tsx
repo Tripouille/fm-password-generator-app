@@ -13,9 +13,11 @@ export interface StrengthIndicatorProps {
 export const StrengthIndicator = ({ strength }: StrengthIndicatorProps) => {
   return (
     <div className="h flex w-full items-center justify-between bg-gray-darkest px-4 py-[0.875rem]">
-      <p className="font-bold leading-snug text-gray-base">STRENGTH</p>
-      <div className="flex items-center gap-4">
-        <p className="text-lg">{MAP_STRENGTH_TO_LABEL[strength]}</p>
+      <p className="font-bold leading-snug text-gray-base sm:text-lg sm:leading-snug ">
+        STRENGTH
+      </p>
+      <div className="flex items-center gap-4 sm:py-[0.4rem]">
+        <p className="text-lg sm:text-2xl">{MAP_STRENGTH_TO_LABEL[strength]}</p>
         <div
           role="img"
           aria-label="strength indicator"

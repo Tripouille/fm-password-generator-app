@@ -3,10 +3,9 @@ import { PropsWithClassName } from "@/utils/types";
 export const CopyToClipboardSVG = ({ className }: PropsWithClassName) => {
   return (
     <svg
-      width="21"
-      height="24"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      viewBox="0 0 21 24"
     >
       <title>Copy to clipboard</title>
       <path
