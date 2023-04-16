@@ -1,24 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { PropsWithClassName } from "@/utils/types";
+import * as RadixSlider from "@radix-ui/react-slider";
+import { ComponentProps } from "react";
 import { Slider } from "./Slider";
 
-export const CharacterLengthSlider = () => {
-  const [length, setLength] = useState(10);
+export const CharacterLengthSlider = ({
+  className,
+  ...props
+}: PropsWithClassName<ComponentProps<typeof RadixSlider.Root>>) => {
+  const length = props.value?.[0] ?? 0;
 
   return (
-    <label className="flex flex-col">
+    <label className={`flex flex-col ${className ?? ""}`}>
       <p className="mb-2 flex items-center justify-between font-bold">
         <span className="leading-snug">Character Length</span>{" "}
         <span className="text-2xl text-green">{length}</span>
       </p>
-      <Slider
-        defaultValue={[length]}
-        min={5}
-        max={15}
-        onValueChange={(value) => setLength(value[0])}
-        className="mb-8"
-      />
+      <Slider {...props} className="mb-8" />
     </label>
   );
 };
