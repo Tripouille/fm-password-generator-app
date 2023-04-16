@@ -15,10 +15,17 @@ export const CopyToClipboardButton = ({
   const timeoutRef = useRef<NodeJS.Timeout>();
 
   function handleClick() {
-    setCopied(true);
-    navigator.clipboard.writeText(text);
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        clearTimeout(timeoutRef.current);
+        setCopied(true);
+        timeoutRef.current = setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {
+        clearTimeout(timeoutRef.current);
+        setCopied(false);
+      });
   }
 
   useEffect(() => {
