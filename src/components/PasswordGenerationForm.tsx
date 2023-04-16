@@ -5,31 +5,29 @@ import { StrengthIndicator } from "@/components/StrengthIndicator";
 import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
 import {
   calculatePasswordStrength,
+  DEFAULT_PASSWORD_GENERATION_OPTIONS,
   isPasswordGenerationBooleanOptionDisabled,
   MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA,
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
   PasswordGenerationBooleanOptions,
-  PasswordGenerationOptions,
   PASSWORD_GENERATION_BOOLEAN_OPION_IDS,
   PASSWORD_GENERATION_FORM_ID,
   PASSWORD_GENERATION_LENGTH_OPTION_ID,
 } from "@/utils/password";
 import { RecordEntries } from "@/utils/types";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
-import { Dispatch, FormEventHandler, SetStateAction } from "react";
+import generator from "generate-password";
+import { FormEventHandler, useState } from "react";
 
 export interface PasswordGenerationFormProps {
-  options: PasswordGenerationOptions;
-  setOptions: Dispatch<SetStateAction<PasswordGenerationOptions>>;
-  handleSubmit: FormEventHandler<HTMLFormElement>;
+  onSubmit: (password: string) => void;
 }
 
 export function PasswordGenerationForm({
-  options,
-  setOptions,
-  handleSubmit,
+  onSubmit,
 }: PasswordGenerationFormProps) {
+  const [options, setOptions] = useState(DEFAULT_PASSWORD_GENERATION_OPTIONS);
   const strength = calculatePasswordStrength(options);
   const isBooleanOptionDisabled =
     isPasswordGenerationBooleanOptionDisabled(options);
@@ -40,6 +38,11 @@ export function PasswordGenerationForm({
     (checked) => {
       setOptions((prev) => ({ ...prev, [booleanOption]: Boolean(checked) }));
     };
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    onSubmit(generator.generate(options));
+  };
 
   return (
     <form
