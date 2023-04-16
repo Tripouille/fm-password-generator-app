@@ -1,10 +1,11 @@
 import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
+import { StrengthIndicator } from "@/components/StrengthIndicator";
 
 export default function Home() {
   return (
-    <article className="flex min-w-[21.45rem] flex-col items-center gap-4 px-4 py-16">
+    <article className="flex min-w-[21.45rem] flex-col items-center gap-4">
       <h1 className="w-full text-center font-bold leading-tight text-gray-base">
         Password Generator
       </h1>
@@ -45,7 +46,7 @@ export default function Home() {
           form="generate-password"
           htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
         >
-          STRENGTH MEDIUM
+          <StrengthIndicator strength={3} />
         </output>
 
         <button type="submit" form="generate-password"></button>
