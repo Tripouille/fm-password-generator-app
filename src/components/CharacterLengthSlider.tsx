@@ -9,7 +9,7 @@ export const CharacterLengthSlider = ({
   className,
   ...props
 }: PropsWithClassName<ComponentProps<typeof RadixSlider.Root>>) => {
-  const length = props.value?.[0] ?? 0;
+  const length = props.value?.[0] ?? "--";
 
   return (
     <label className={`flex flex-col ${className ?? ""}`}>
