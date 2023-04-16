@@ -1,6 +1,7 @@
 import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
+import { RigthArrowSVG } from "@/components/RigthArrowSVG";
 import { StrengthIndicator } from "@/components/StrengthIndicator";
 
 export default function Home() {
@@ -49,7 +50,14 @@ export default function Home() {
           <StrengthIndicator strength={3} />
         </output>
 
-        <button type="submit" form="generate-password"></button>
+        <button
+          className="mt-4 flex w-full items-center justify-center gap-4 border-2 border-transparent bg-green py-4 font-bold text-gray-darkest hover:border-green hover:bg-transparent hover:text-green"
+          type="submit"
+          form="generate-password"
+        >
+          GENERATE
+          <RigthArrowSVG />
+        </button>
       </form>
     </article>
   );
