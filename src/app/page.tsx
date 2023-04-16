@@ -1,76 +1,31 @@
 "use client";
 
-import { PasswordLengthSlider } from "@/components/PasswordLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardButton } from "@/components/CopyToClipboardButton";
-import {
-  StrengthIndicator,
-  StrengthIndicatorProps,
-} from "@/components/StrengthIndicator";
+import { PasswordLengthSlider } from "@/components/PasswordLengthSlider";
+import { StrengthIndicator } from "@/components/StrengthIndicator";
 import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
+import {
+  calculatePasswordStrength,
+  DEFAULT_PASSWORD_GENERATION_OPTIONS,
+  isPasswordGenerationBooleanOptionDisabled,
+  MAX_PASSWORD_LENGTH,
+  MIN_PASSWORD_LENGTH,
+  PASSWORD_PLACEHOLDER,
+} from "@/utils/password";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
 
-interface PasswordGenerationOptions {
-  length: number;
-  uppercase: boolean;
-  lowercase: boolean;
-  numbers: boolean;
-  symbols: boolean;
-}
-
-const MIN_CHARACTERS_LENGTH = 1;
-const MAX_CHARACTERS_LENGTH = 20;
-
-function calculatePasswordStrength(
-  options: PasswordGenerationOptions
-): StrengthIndicatorProps["strength"] {
-  const activeBooleanOptionsCount: number = Object.values(options).reduce(
-    (acc, curr) => {
-      if (typeof curr === "boolean" && curr) return acc + 1;
-      return acc;
-    },
-    0
-  );
-  const strength = Math.ceil(
-    activeBooleanOptionsCount *
-      ((options.length - MIN_CHARACTERS_LENGTH) /
-        ((MIN_CHARACTERS_LENGTH + MAX_CHARACTERS_LENGTH) / 2))
-  );
-
-  if (strength < 1) return 1;
-  if (strength > 4) return 4;
-  return strength as StrengthIndicatorProps["strength"];
-}
-
 export default function HomePage() {
   const [password, setPassword] = useState<string>("");
-  const [options, setOptions] = useState<PasswordGenerationOptions>({
-    length: Math.floor((MIN_CHARACTERS_LENGTH + MAX_CHARACTERS_LENGTH) / 2),
-    uppercase: true,
-    lowercase: true,
-    numbers: true,
-    symbols: false,
-  });
+  const [options, setOptions] = useState(DEFAULT_PASSWORD_GENERATION_OPTIONS);
   const strength = calculatePasswordStrength(options);
+  const isBooleanOptionDisabled =
+    isPasswordGenerationBooleanOptionDisabled(options);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     setPassword(generator.generate(options));
-  };
-
-  const isOptionDisabled = (
-    option: keyof Omit<PasswordGenerationOptions, "length">
-  ): boolean => {
-    const optionIsActive = options[option];
-    const otherBooleanOptionsAreDisabled = Object.keys(options)
-      .filter(
-        (o) =>
-          typeof options[o as keyof PasswordGenerationOptions] === "boolean" &&
-          o !== option
-      )
-      .every((o) => !options[o as keyof PasswordGenerationOptions]);
-    return optionIsActive && otherBooleanOptionsAreDisabled;
   };
 
   return (
@@ -89,7 +44,7 @@ export default function HomePage() {
             password ? "" : "text-[#54535B]"
           }`}
         >
-          {password || "P4$5W0rD!"}
+          {password || PASSWORD_PLACEHOLDER}
         </p>
         <CopyToClipboardButton text={password} />
       </output>
@@ -101,8 +56,8 @@ export default function HomePage() {
       >
         <PasswordLengthSlider
           className="mb-8"
-          min={MIN_CHARACTERS_LENGTH}
-          max={MAX_CHARACTERS_LENGTH}
+          min={MIN_PASSWORD_LENGTH}
+          max={MAX_PASSWORD_LENGTH}
           value={[options.length]}
           onValueChange={(length) =>
             setOptions((prev) => ({ ...prev, length: length[0] }))
@@ -113,7 +68,7 @@ export default function HomePage() {
           <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-uppercase-letters"
-              disabled={isOptionDisabled("uppercase")}
+              disabled={isBooleanOptionDisabled("uppercase")}
               checked={options.uppercase}
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, uppercase: Boolean(checked) }))
@@ -124,7 +79,7 @@ export default function HomePage() {
           <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-lowercase-letters"
-              disabled={isOptionDisabled("lowercase")}
+              disabled={isBooleanOptionDisabled("lowercase")}
               checked={options.lowercase}
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, lowercase: Boolean(checked) }))
@@ -135,7 +90,7 @@ export default function HomePage() {
           <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-numbers"
-              disabled={isOptionDisabled("numbers")}
+              disabled={isBooleanOptionDisabled("numbers")}
               checked={options.numbers}
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, numbers: Boolean(checked) }))
@@ -146,7 +101,7 @@ export default function HomePage() {
           <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
             <Checkbox
               id="include-symbols"
-              disabled={isOptionDisabled("symbols")}
+              disabled={isBooleanOptionDisabled("symbols")}
               checked={options.symbols}
               onCheckedChange={(checked) =>
                 setOptions((prev) => ({ ...prev, symbols: Boolean(checked) }))
