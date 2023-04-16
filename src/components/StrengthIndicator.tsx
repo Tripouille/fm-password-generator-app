@@ -1,4 +1,5 @@
 const MAP_STRENGTH_TO_LABEL = {
+  0: "",
   1: "TOO WEAK!",
   2: "WEAK",
   3: "MEDIUM",
@@ -6,7 +7,7 @@ const MAP_STRENGTH_TO_LABEL = {
 } as const;
 
 export interface StrengthIndicatorProps {
-  strength: 1 | 2 | 3 | 4;
+  strength: 0 | 1 | 2 | 3 | 4;
 }
 
 export const StrengthIndicator = ({ strength }: StrengthIndicatorProps) => {

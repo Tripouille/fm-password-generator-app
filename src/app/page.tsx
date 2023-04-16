@@ -4,7 +4,10 @@ import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
 import { RigthArrowSVG } from "@/components/RigthArrowSVG";
-import { StrengthIndicator } from "@/components/StrengthIndicator";
+import {
+  StrengthIndicator,
+  StrengthIndicatorProps,
+} from "@/components/StrengthIndicator";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
 
@@ -16,15 +19,40 @@ interface PasswordGenerationOptions {
   symbols: boolean;
 }
 
+const MIN_CHARACTERS_LENGTH = 1;
+const MAX_CHARACTERS_LENGTH = 20;
+
+function calculatePasswordStrength(
+  options: PasswordGenerationOptions
+): StrengthIndicatorProps["strength"] {
+  const activeBooleanOptionsCount: number = Object.values(options).reduce(
+    (acc, curr) => {
+      if (typeof curr === "boolean" && curr) return acc + 1;
+      return acc;
+    },
+    0
+  );
+  const strength = Math.ceil(
+    activeBooleanOptionsCount *
+      ((options.length - MIN_CHARACTERS_LENGTH) /
+        ((MIN_CHARACTERS_LENGTH + MAX_CHARACTERS_LENGTH) / 2))
+  );
+
+  if (strength < 1) return 1;
+  if (strength > 4) return 4;
+  return strength as StrengthIndicatorProps["strength"];
+}
+
 export default function HomePage() {
   const [password, setPassword] = useState<string>("");
   const [options, setOptions] = useState<PasswordGenerationOptions>({
-    length: 10,
+    length: Math.floor((MIN_CHARACTERS_LENGTH + MAX_CHARACTERS_LENGTH) / 2),
     uppercase: true,
     lowercase: true,
     numbers: true,
     symbols: false,
   });
+  const strength = calculatePasswordStrength(options);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -68,8 +96,8 @@ export default function HomePage() {
         onSubmit={handleSubmit}
       >
         <CharacterLengthSlider
-          min={5}
-          max={15}
+          min={MIN_CHARACTERS_LENGTH}
+          max={MAX_CHARACTERS_LENGTH}
           value={[options.length]}
           onValueChange={(length) =>
             setOptions((prev) => ({ ...prev, length: length[0] }))
@@ -128,7 +156,7 @@ export default function HomePage() {
           form="generate-password"
           htmlFor="character-length include-uppercase-letters include-lowercase-letters include-numbers include-symbols"
         >
-          <StrengthIndicator strength={3} />
+          <StrengthIndicator strength={strength} />
         </output>
 
         <button
