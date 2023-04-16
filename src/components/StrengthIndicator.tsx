@@ -13,7 +13,7 @@ export interface StrengthIndicatorProps {
 export const StrengthIndicator = ({ strength }: StrengthIndicatorProps) => {
   return (
     <div className="h flex w-full items-center justify-between bg-gray-darkest px-4 py-[0.875rem]">
-      <p className="font-bold leading-snug text-gray-base sm:text-lg sm:leading-snug ">
+      <p className="font-bold leading-snug text-gray-base sm:text-lg sm:leading-snug">
         STRENGTH
       </p>
       <div className="flex items-center gap-4 sm:py-[0.4rem]">

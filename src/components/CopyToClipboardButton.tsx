@@ -1,5 +1,6 @@
 "use client";
 import { PropsWithClassName } from "@/utils/types";
+import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { CopyToClipboardSVG } from "./svgs/CopyToClipboardSVG";
 
@@ -40,13 +41,13 @@ export const CopyToClipboardButton = ({
   return (
     <button
       disabled={!text}
-      className={`flex items-center gap-4 ${className ?? ""}`}
+      className={clsx("flex items-center gap-4", className)}
       onClick={handleClick}
     >
       <span
-        className={`${
-          copied ? "" : "hidden"
-        } text-lg font-bold leading-snug text-green`}
+        className={clsx("text-lg font-bold leading-snug text-green", {
+          hidden: !copied,
+        })}
       >
         COPIED
       </span>

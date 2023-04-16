@@ -1,6 +1,7 @@
 "use client";
 import { PropsWithClassName } from "@/utils/types";
 import * as RadixSlider from "@radix-ui/react-slider";
+import clsx from "clsx";
 import { ComponentProps } from "react";
 
 export const Slider = ({
@@ -10,7 +11,7 @@ export const Slider = ({
 }: PropsWithClassName<ComponentProps<typeof RadixSlider.Root>>) => {
   return (
     <RadixSlider.Root
-      className={`relative flex h-7 w-full items-center ${className ?? ""}`}
+      className={clsx("relative flex h-7 w-full items-center", className)}
       {...props}
     >
       <RadixSlider.Track className="relative h-2 w-full flex-grow bg-gray-darkest">

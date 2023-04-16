@@ -6,6 +6,7 @@ import {
   PASSWORD_GENERATION_LENGTH_OPTION_ID,
   PASSWORD_PLACEHOLDER,
 } from "@/utils/password";
+import clsx from "clsx";
 
 export function PasswordOutput({ password }: { password: string }) {
   return (
@@ -15,9 +16,9 @@ export function PasswordOutput({ password }: { password: string }) {
       htmlFor={`${PASSWORD_GENERATION_LENGTH_OPTION_ID} ${PASSWORD_GENERATION_BOOLEAN_OPION_IDS}`}
     >
       <p
-        className={`sm:text-[2rem] sm:leading-[2.625rem] ${
-          password ? "" : "text-[#54535B]"
-        }`}
+        className={clsx("sm:text-[2rem] sm:leading-[2.625rem]", {
+          "text-[#54535B]": !password,
+        })}
       >
         {password || PASSWORD_PLACEHOLDER}
       </p>
