@@ -1,7 +1,6 @@
 "use client";
 
 import { Checkbox } from "@/components/Checkbox";
-import { CopyToClipboardButton } from "@/components/CopyToClipboardButton";
 import { PasswordLengthSlider } from "@/components/PasswordLengthSlider";
 import { StrengthIndicator } from "@/components/StrengthIndicator";
 import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
@@ -16,12 +15,12 @@ import {
   PASSWORD_GENERATION_BOOLEAN_OPION_IDS,
   PASSWORD_GENERATION_FORM_ID,
   PASSWORD_GENERATION_LENGTH_OPTION_ID,
-  PASSWORD_PLACEHOLDER,
 } from "@/utils/password";
 import { RecordEntries } from "@/utils/types";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
+import { PasswordOutput } from "../components/PasswordOutput";
 
 export default function HomePage() {
   const [password, setPassword] = useState<string>("");
@@ -49,20 +48,7 @@ export default function HomePage() {
         Password Generator
       </h1>
 
-      <output
-        className="mb-4 flex w-full items-center justify-between bg-gray-dark p-4 font-bold leading-loose sm:mb-6 sm:px-8 sm:py-5"
-        form={PASSWORD_GENERATION_FORM_ID}
-        htmlFor={`${PASSWORD_GENERATION_LENGTH_OPTION_ID} ${PASSWORD_GENERATION_BOOLEAN_OPION_IDS}`}
-      >
-        <p
-          className={`sm:text-[2rem] sm:leading-[2.625rem] ${
-            password ? "" : "text-[#54535B]"
-          }`}
-        >
-          {password || PASSWORD_PLACEHOLDER}
-        </p>
-        <CopyToClipboardButton text={password} />
-      </output>
+      <PasswordOutput password={password} />
 
       <form
         className="sm: w-full bg-gray-dark px-4 py-4 sm:px-8 sm:pb-8 sm:pt-6"
