@@ -14,7 +14,7 @@ export type PasswordGenerationBooleanOptions = {
     : never]: boolean;
 };
 
-export const MIN_PASSWORD_LENGTH = 1;
+export const MIN_PASSWORD_LENGTH = 4;
 export const MAX_PASSWORD_LENGTH = 20;
 export const DEFAULT_PASSWORD_GENERATION_OPTIONS: PasswordGenerationOptions = {
   length: Math.floor((MIN_PASSWORD_LENGTH + MAX_PASSWORD_LENGTH) / 2),

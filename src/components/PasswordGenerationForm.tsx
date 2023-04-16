@@ -41,7 +41,13 @@ export function PasswordGenerationForm({
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    onSubmit(generator.generate(options));
+    onSubmit(
+      generator.generate({
+        ...options,
+        excludeSimilarCharacters: true,
+        strict: true,
+      })
+    );
   };
 
   return (
