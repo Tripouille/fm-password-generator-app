@@ -2,7 +2,7 @@
 
 import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
-import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
+import { CopyToClipboardButton } from "@/components/CopyToClipboardButton";
 import { RigthArrowSVG } from "@/components/RigthArrowSVG";
 import {
   StrengthIndicator,
@@ -87,7 +87,7 @@ export default function HomePage() {
         <p className={`${password ? "" : "text-[#54535B]"}`}>
           {password || "P4$5W0rD!"}
         </p>
-        <CopyToClipboardSVG />
+        <CopyToClipboardButton text={password} />
       </output>
 
       <form
