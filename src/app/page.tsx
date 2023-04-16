@@ -9,11 +9,13 @@ import {
   calculatePasswordStrength,
   DEFAULT_PASSWORD_GENERATION_OPTIONS,
   isPasswordGenerationBooleanOptionDisabled,
+  MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA,
   MAX_PASSWORD_LENGTH,
   MIN_PASSWORD_LENGTH,
-  PasswordGenerationOptions,
+  PasswordGenerationBooleanOptions,
   PASSWORD_PLACEHOLDER,
 } from "@/utils/password";
+import { RecordEntries } from "@/utils/types";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import generator from "generate-password";
 import { FormEventHandler, useState } from "react";
@@ -32,7 +34,7 @@ export default function HomePage() {
 
   const handleCheckedChange =
     (
-      booleanOption: keyof Omit<PasswordGenerationOptions, "length">
+      booleanOption: keyof PasswordGenerationBooleanOptions
     ): CheckboxProps["onCheckedChange"] =>
     (checked) => {
       setOptions((prev) => ({ ...prev, [booleanOption]: Boolean(checked) }));
@@ -75,42 +77,26 @@ export default function HomePage() {
         />
 
         <div className="mb-8 flex flex-col gap-4 font-bold leading-tight sm:gap-5">
-          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
-            <Checkbox
-              id="include-uppercase-letters"
-              disabled={isBooleanOptionDisabled("uppercase")}
-              onCheckedChange={handleCheckedChange("uppercase")}
-              checked={options.uppercase}
-            />
-            Include Uppercase Letters
-          </label>
-          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
-            <Checkbox
-              id="include-lowercase-letters"
-              disabled={isBooleanOptionDisabled("lowercase")}
-              onCheckedChange={handleCheckedChange("lowercase")}
-              checked={options.lowercase}
-            />
-            Include Lowercase Letters
-          </label>
-          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
-            <Checkbox
-              id="include-numbers"
-              disabled={isBooleanOptionDisabled("numbers")}
-              onCheckedChange={handleCheckedChange("numbers")}
-              checked={options.numbers}
-            />
-            Include Numbers
-          </label>
-          <label className="flex items-center gap-5 sm:text-lg sm:leading-snug">
-            <Checkbox
-              id="include-symbols"
-              disabled={isBooleanOptionDisabled("symbols")}
-              onCheckedChange={handleCheckedChange("symbols")}
-              checked={options.symbols}
-            />
-            Include Symbols
-          </label>
+          {(
+            Object.entries(
+              MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA
+            ) as RecordEntries<
+              typeof MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA
+            >
+          ).map(([booleanOption, { id, label }]) => (
+            <label
+              key={id}
+              className="flex items-center gap-5 sm:text-lg sm:leading-snug"
+            >
+              <Checkbox
+                id={id}
+                disabled={isBooleanOptionDisabled(booleanOption)}
+                onCheckedChange={handleCheckedChange(booleanOption)}
+                checked={options[booleanOption]}
+              />
+              {label}
+            </label>
+          ))}
         </div>
 
         <output

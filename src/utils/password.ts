@@ -8,6 +8,12 @@ export interface PasswordGenerationOptions {
   symbols: boolean;
 }
 
+export type PasswordGenerationBooleanOptions = {
+  [key in keyof PasswordGenerationOptions as PasswordGenerationOptions[key] extends boolean
+    ? key
+    : never]: boolean;
+};
+
 export const MIN_PASSWORD_LENGTH = 1;
 export const MAX_PASSWORD_LENGTH = 20;
 export const DEFAULT_PASSWORD_GENERATION_OPTIONS: PasswordGenerationOptions = {
@@ -19,13 +25,35 @@ export const DEFAULT_PASSWORD_GENERATION_OPTIONS: PasswordGenerationOptions = {
 };
 export const PASSWORD_PLACEHOLDER = "P4$5W0rD!";
 
+export const MAP_PASSWORD_GENERATION_BOOLEAN_OPTION_TO_DATA: Record<
+  keyof PasswordGenerationBooleanOptions,
+  { id: string; label: string }
+> = {
+  uppercase: {
+    id: "include-uppercase-letters",
+    label: "Include Uppercase Letters",
+  },
+  lowercase: {
+    id: "include-lowercase-letters",
+    label: "Include Lowercase Letters",
+  },
+  numbers: {
+    id: "include-numbers",
+    label: "Include Numbers",
+  },
+  symbols: {
+    id: "include-symbols",
+    label: "Include Symbols",
+  },
+};
+
 /**
  * Returns a function that checks if a boolean option is disabled.
  * Always one boolean option must be active.
  */
 export const isPasswordGenerationBooleanOptionDisabled =
   (options: PasswordGenerationOptions) =>
-  (booleanOption: keyof Omit<PasswordGenerationOptions, "length">): boolean => {
+  (booleanOption: keyof PasswordGenerationBooleanOptions): boolean => {
     const optionIsActive = options[booleanOption];
     const otherBooleanOptionsAreDisabled = Object.keys(options)
       .filter(
