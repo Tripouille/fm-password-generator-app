@@ -1,3 +1,4 @@
+import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { CopyToClipboardSVG } from "@/components/CopyToClipboardSVG";
 
 export default function Home() {
@@ -16,11 +17,8 @@ export default function Home() {
         <CopyToClipboardSVG />
       </output>
 
-      <form className="bg-gray-dark" id="generate-password">
-        <label>
-          Character Length
-          <input id="character-length" type="range" min="5" max="25" />
-        </label>
+      <form className="bg-gray-dark p-4" id="generate-password">
+        <CharacterLengthSlider />
 
         <label>
           <input id="include-uppercase-letters" type="checkbox" />
