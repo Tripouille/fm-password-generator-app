@@ -3,7 +3,7 @@
 import { CharacterLengthSlider } from "@/components/CharacterLengthSlider";
 import { Checkbox } from "@/components/Checkbox";
 import { CopyToClipboardButton } from "@/components/CopyToClipboardButton";
-import { RigthArrowSVG } from "@/components/RigthArrowSVG";
+import { RigthArrowSVG } from "@/components/svgs/RigthArrowSVG";
 import {
   StrengthIndicator,
   StrengthIndicatorProps,

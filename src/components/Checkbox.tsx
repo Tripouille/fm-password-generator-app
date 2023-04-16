@@ -2,7 +2,7 @@
 import { PropsWithClassName } from "@/utils/types";
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { ComponentProps } from "react";
-import { CheckSVG } from "./CheckSVG";
+import { CheckSVG } from "./svgs/CheckSVG";
 
 export const Checkbox = ({
   className,

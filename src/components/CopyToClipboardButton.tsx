@@ -1,7 +1,7 @@
 "use client";
 import { PropsWithClassName } from "@/utils/types";
 import { useEffect, useRef, useState } from "react";
-import { CopyToClipboardSVG } from "./CopyToClipboardSVG";
+import { CopyToClipboardSVG } from "./svgs/CopyToClipboardSVG";
 
 export interface CopyToClipboardButtonProps {
   text: string;
